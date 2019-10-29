@@ -1,3 +1,5 @@
+modified from git@github.com/apache/apache-mxnet/examples/image-classfication
+
 # Hish: Better Activation Function with Both High-order Continuity and High-fidelity to Input Signals
 Author: Bo Wang (flish_wang@sina.com)
 
@@ -20,7 +22,7 @@ have second-order derivitive. Therefore, we need the continuity for at least two
 [H3.] The function should not have symmetric parts, as this will lose unecessary information during forward.
 [H4.] The function curve should have line segment with derivitive of ONE on a range that there are enough input signals fall into this area. 
 
-Hypothesis H4 is the only possible explaination that mish out-performs swish, as they have very similar values and first-order derivitives on the negative parts. The only obvious difference between mish and swish is that mish becomes identiy function earlier than swish as the input values raise, therefore, it transforms the postive signals with higher-fidelity than swish.
+Hypothesis H4 is the most possible explaination that mish out-performs swish, as they have very similar values and first-order derivitives on the negative parts. The only obvious difference between mish and swish is that mish becomes identiy function earlier than swish as the input values raise, therefore, it transforms the postive signals with higher-fidelity than swish.
 
 I conclude that the ability to transform enough signals with high-fidelity is necessary for a good activation function. This is because that the DNNs requires low-level features when making high-level features and the final predictions, which are generated in the earlier layers -- this also explains that why ResNet and densebox work: they provides earlier features directly to deeper layers. Activation functions like relu and mish transform positive signals with high-fidelity, then the activated features can be passed to where they are used directly after generated. That is why these functions have a better performance than their competitor tanh and swish.
 
@@ -37,16 +39,15 @@ f(x) =
 	-2.5*exp(x) + 4*exp(2x) + -1.5*exp(3x)  (otherwise)
 , which I named as Nish.
 
-Compared with Mish, Nish has a more simpler fomuler, lower minimal, is easier to compute both forward- and backward-, and becomes identiy 
-more quickly. 
+Compared with Mish, Nish becomes identiy function earlier, has a more simpler fomuler, thus is easier to compute both forwardly and backwardly. 
 
-In this work, I compares mish and nish on cifar, minist and ImageNet with different networks (lenet and resnet) based on the mxnet official examples.
+In this work, I applies mish and nish on cifar, minist and ImageNet in different networks (lenet and resnet) based on the mxnet official examples.
 The experiments shows (.......)
 
 # Experimental result
 training scripts see [scripts.sh]
 
-
+arguments:
 cifar10: max-random-aspect-ratio 0.1 max-random-rotate-angle 15 max-random-shear-ratio 0.1 random-crop 1 pad 4 resize 32 lr 0.05
 epoch 250 lr-step 150,200
 

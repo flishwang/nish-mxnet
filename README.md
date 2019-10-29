@@ -31,7 +31,7 @@ f(x) =
 	x	(if x >=0 )
 	a_1 exp(x) + a_2 exp(2x) + a_3 exp(3x) + ...	(otherwise)
 , which satisfies f(0)=0, f'(0)=1 (from both part) and f''(0) = 0 ( from both part).
-It is easy to proof that functions satisfying the above conditions satisfies H1, H2, H3 and H4.
+It is easy to proof that these functions satisfies H1, H2, H3 and H4.
 
 Among the function series, the simplest one is:
 f(x) = 

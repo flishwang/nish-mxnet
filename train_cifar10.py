@@ -42,6 +42,7 @@ if __name__ == '__main__':
     data.set_data_aug_level(parser, 2)
 
     parser.add_argument('--act-type',type=str,default='',help='if set, replace all the relu in the network')
+    parser.add_argument('--nish-ratio', type=float, default=1.0, help='ratio to decide how close nish looks to relu')
 
     parser.set_defaults(
         # network
@@ -56,16 +57,16 @@ if __name__ == '__main__':
         pad_size       = 4,
         # train
         batch_size     = 128,
-        num_epochs     = 250,
+        num_epochs     = 270,
         lr             = .05,
-        lr_step_epochs = '150,200',
+        lr_step_epochs = '150,200,250',
     )
     args = parser.parse_args()
 
     if len(args.act_type)>0:
         import symbols.MishOp
         symbols.MishOp.act_type_replace=args.act_type
-
+        symbols.MishOp.nr = args.nish_ratio
     # load network
     from importlib import import_module
     net = import_module('symbols.'+args.network)
